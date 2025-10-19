@@ -1,0 +1,53 @@
+[System]
+Name='cruise'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='prod'
+OrMethod='probor'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='speederror'
+Range=[-15 15]
+NumMFs=3
+MF1='low':'trapmf',[-15.00 -15 -10 -4]
+MF2='medium':'trapmf',[-11.25 -1.25 1.25 11.25]
+MF3='high':'trapmf',[3.75 10 15 15.00]
+
+[Input2]
+Name='acceleration'
+Range=[-20 20]
+NumMFs=3
+MF1='slow':'trimf',[-20 -20 -3.333]
+MF2='ok':'trimf',[-16.67 0 16.67]
+MF3='high':'trimf',[3.333 20 20]
+
+[Output1]
+Name='forcechange'
+Range=[-1000 1000]
+NumMFs=9
+MF1='mf1':'constant',[500]
+MF2='mf2':'constant',[300]
+MF3='mf3':'constant',[100]
+MF4='mf4':'constant',[50]
+MF5='mf5':'constant',[1]
+MF6='mf6':'constant',[-30]
+MF7='mf7':'constant',[-200]
+MF8='mf8':'constant',[-300]
+MF9='mf9':'constant',[-900]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 2 (1) : 1
+1 3, 3 (1) : 1
+2 1, 4 (1) : 1
+2 2, 5 (1) : 1
+2 3, 6 (1) : 1
+3 1, 7 (1) : 1
+3 2, 8 (1) : 1
+3 3, 9 (1) : 1
